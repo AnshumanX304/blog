@@ -1,4 +1,5 @@
 import{useState} from 'react';
+import Bloglist from './bloglist';
 const Home = () => {
     // const [name,setName]=useState('mario');
     // const [age,setAge]=useState(25);
@@ -15,14 +16,15 @@ const Home = () => {
             {/* <h1>Home page content</h1>
             <p>{name} is {age} years old</p>
             <button onClick={handleClick}>Click me</button> */}
-            {blogs.map(blog => (
+            {/* {blogs.map(blog => (
                 <div className="blog-preview" key={blog.id} >
                     <h2>{ blog.title }</h2>
                     <p>Written by { blog.author }</p>
                 </div>
-            ))}
+            ))} */}
+            <Bloglist blogs={blogs} title="All Blogs"/>
         </div>
-     );
+    );
 }
  
 export default Home ;
