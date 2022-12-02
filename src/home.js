@@ -7,6 +7,9 @@ const Home = () => {
     //     setName('luigi');
     //     setAge(30);
     const [blogs, setBlogs] = useState(null);
+    const [isPending,setIsPending]=useState(true); //variable that determines 
+    //whether to display loading message while fetching data on screen 
+    //or not
 
     //   const  [name,setName]=useState('mario');
 
@@ -21,13 +24,18 @@ const Home = () => {
 // //blogs array via useState hook
 
 useEffect(()=>{
-   fetch('http://localhost:8000/blogs')
-   .then(res=>{
-        return res.json();
-   })
-   .then(data=>{
-        setBlogs(data);
-   })
+    // setTimeout(() => { //settime out implemented to
+        //test if loading message is being displayed 
+        //in case the fetching of data takes time 
+        fetch('http://localhost:8000/blogs')
+        .then(res=>{
+                return res.json();
+        })
+        .then(data=>{
+                setBlogs(data);
+                setIsPending(false);
+        });
+    // },1000)
 
 },[]) //here empty array is passed as a dependency so that this function 
 //runs only on the initial render
@@ -49,6 +57,9 @@ useEffect(()=>{
                     <p>Written by { blog.author }</p>
                 </div>
             ))} */}
+            { isPending && <div>Loading...</div>} 
+            {/* loading message while 
+            loading data on screen if fetching of data takes some time  */}
             {blogs && <Bloglist blogs={blogs} title="All Blogs" handleDelete={handleDelete}/>}
             {/* <button onClick={()=>setName('luigi')}>Click me</button>//button to 
             //run useEffect function when name is changed  */}
