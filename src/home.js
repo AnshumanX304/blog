@@ -1,4 +1,5 @@
 // import{useState,useEffect} from 'react'; //they are now used in usefetch.js file
+import React from "react";
 import Bloglist from './bloglist';
 import useFetch from './usefetch';
 const Home = () => {
